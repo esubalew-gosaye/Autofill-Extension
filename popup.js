@@ -31,14 +31,28 @@ document.getElementById('fill').addEventListener('click', () => {
     return;
   }
 
-  // Send a message to the content script to fill the fields
+
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, { action: 'fill', username, password }, (response) => {
-      if (response && response.success) {
-        console.log('Fields filled successfully!');
-      } else {
-        console.error('Failed to fill fields.');
-      }
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0].id },
+      func: fillFields,
+      args: [username, password]
+    }, () => {
+      console.log('Fields filled successfully!');
     });
-  })
-})
+  });
+});
+
+
+function fillFields(username, password) {
+  const usernameField = document.querySelector('input[type="text"], input[name="username"], input[id="username"]');
+  const passwordField = document.querySelector('input[type="password"], input[name="password"], input[id="password"]');
+
+  if (usernameField && passwordField) {
+    usernameField.value = username;
+    passwordField.value = password;
+    console.log('Fields filled successfully!');
+  } else {
+    console.error('Input fields not found. Check the selectors.');
+  }
+}
