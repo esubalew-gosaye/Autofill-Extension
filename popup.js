@@ -1,21 +1,15 @@
-// Get the current website's hostname
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   const url = new URL(tabs[0].url).hostname;
 
-  // Retrieve saved credentials from storage
   chrome.storage.local.get(url, (data) => {
     if (data[url]) {
       const { username, password } = data[url];
-      // Populate the input fields
       document.getElementById('username').value = username;
       document.getElementById('password').value = password;
-    } else {
-      console.log('No saved credentials for this website.');
     }
   });
 });
 
-// Save credentials when the button is clicked
 document.getElementById('save').addEventListener('click', () => {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
@@ -27,3 +21,24 @@ document.getElementById('save').addEventListener('click', () => {
     });
   });
 });
+
+document.getElementById('fill').addEventListener('click', () => {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  if (!username || !password) {
+    alert('Please enter both username and password.');
+    return;
+  }
+
+  // Send a message to the content script to fill the fields
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, { action: 'fill', username, password }, (response) => {
+      if (response && response.success) {
+        console.log('Fields filled successfully!');
+      } else {
+        console.error('Failed to fill fields.');
+      }
+    });
+  })
+})
