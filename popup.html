@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Auto Login on private site</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <h3>Save Credentials</h3>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <div class="button-container">
-      <button id="save">Save</button>
-      <button id="fill">Fill</button>
+  <head>
+    <title>Auto Login on private site</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <!-- Add FontAwesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h3>Save Credentials</h3>
+      <input type="text" id="username" placeholder="Username" />
+
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Password" />
+        <i class="fas fa-eye icon-toggle-password"></i>
+      </div>
+      <div class="button-container">
+        <button id="save">Save</button>
+      </div>
+      <div id="credentials-list"></div>
     </div>
-  </div>
-  <script src="popup.js"></script>
-</body>
+    <script src="popup.js"></script>
+  </body>
 </html>

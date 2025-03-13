@@ -22,7 +22,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 210px;
+  width: 250px;
   text-align: center;
 }
 
@@ -73,10 +73,76 @@ button:active {
   background-color: #004080;
 }
 
-#fill {
-  background-color: #28a745;
+#credentials-list {
+  margin-top: 15px;
 }
 
-#fill:hover {
-  background-color: #218838;
+.credential-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.credential-item span {
+  flex: 1;
+  font-size: 14px;
+}
+
+.icon-fill,
+.icon-remove {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.icon-remove {
+  color: #ff4d4d;
+}
+
+.icon-fill:hover {
+  color: #0056b3;
+}
+
+.icon-remove:hover {
+  color: #cc0000;
+}
+
+.icon-edit,
+.icon-up,
+.icon-down {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.icon-edit:hover,
+.icon-up:hover,
+.icon-down:hover {
+  color: #0056b3;
+}
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 30px; /* Space for the eye icon */
+}
+
+.icon-toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #007bff;
+}
+
+.icon-toggle-password:hover {
+  color: #0056b3;
 }

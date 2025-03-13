@@ -1,7 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Auto Login",
-  "version": "1.0",
+  "name": "Auto Filler",
+  "version": "2.0",
+  "description": "Auto Filler helps you save your credentials locally and automatically populates them on visit and reload.",
   "permissions": ["storage", "activeTab", "tabs", "scripting"],
   "host_permissions": ["<all_urls>"],
   "background": {
