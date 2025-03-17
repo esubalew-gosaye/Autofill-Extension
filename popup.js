@@ -31,13 +31,12 @@ function saveOrUpdateCredentials(url, username, password) {
     // Check if we're updating an existing credential
     const indexToUpdate = credentials.findIndex(cred => cred.username === username);
     if (indexToUpdate !== -1) {
-      credentials[indexToUpdate] = { username, password }; // Update existing credential
+      credentials[indexToUpdate] = { username, password };
     } else {
-      credentials.push({ username, password }); // Add new credential
+      credentials.push({ username, password });
     }
 
     chrome.storage.local.set({ [url]: credentials }, () => {
-      alert('Credentials saved!');
       loadCredentials(url);
     });
   });
@@ -57,7 +56,7 @@ function loadCredentials(url) {
       const credDiv = document.createElement('div');
       credDiv.className = 'credential-item';
       credDiv.innerHTML = `
-        <span>${cred.username}</span>
+        <span>${cred.username.length > 10 ? cred.username.slice(0, 18) + '...' : cred.username}</span>
         <i class="fas fa-edit icon-edit" data-username="${cred.username}" data-password="${cred.password}"></i>
         <i class="fas fa-arrow-up icon-up" title="Move up" data-index="${index}"></i>
         <i class="fas fa-right-to-bracket icon-fill" title="Use this" data-username="${cred.username}" data-password="${cred.password}"></i>
@@ -66,7 +65,6 @@ function loadCredentials(url) {
       credentialsList.appendChild(credDiv);
     });
 
-    // Attach event listeners to the icons
     attachEventListeners(url);
   });
 }
@@ -140,10 +138,9 @@ function moveCredential(url, fromIndex, toIndex) {
     }
 
     if (toIndex < 0 || toIndex >= credentials.length) {
-      return; // Invalid move
+      return;
     }
 
-    // Swap positions
     const cred = credentials.splice(fromIndex, 1)[0];
     credentials.splice(toIndex, 0, cred);
 

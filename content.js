@@ -11,7 +11,6 @@ window.addEventListener('load', () => {
       // Use the first credential by default
       const { username, password } = credentials[0];
 
-      // Try to find the username and password fields
       const usernameField = findInputField(['input[type="text"]', 'input[name="username"]', 'input[id="username"]']);
       const passwordField = findInputField(['input[type="password"]', 'input[name="password"]', 'input[id="password"]']);
 

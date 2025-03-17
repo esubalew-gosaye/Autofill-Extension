@@ -34,4 +34,4 @@ Clone the latest version from here.
 2. Locate the extension and click Remove.
 
 Note 📝
-> This is a basic version and may not be perfect. If you'd like to add more features or fix bugs, feel free to open an issue or submit a PR. 🛠️
+> If you'd like to add more features or fix bugs, feel free to open an issue or submit a PR. 🛠️
